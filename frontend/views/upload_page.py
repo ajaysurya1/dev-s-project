@@ -3,7 +3,7 @@ import sys
 import os
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-from api_client import upload_file, check_health
+from api_client import upload_file, check_health, BASE_URL
 
 
 def show():
@@ -13,7 +13,7 @@ def show():
 
     backend_ok = check_health()
     if not backend_ok:
-        st.error("Backend is not reachable. Make sure the server is running on http://localhost:8000")
+        st.error("Backend is not reachable. Make sure the server is running on " + BASE_URL)
         return
 
     allowed_types = ["pdf", "docx", "txt", "csv", "png", "jpg", "jpeg"]

@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = "http://localhost:8000"
+BASE_URL = "https://dev-s-project.onrender.com"
 def upload_file(file_bytes, file_name):
     response = requests.post(
         BASE_URL + "/upload",
@@ -29,7 +29,7 @@ def ask_question(question, document_ids=None):
 
 def check_health():
     try:
-        response = requests.get(BASE_URL + "/health", timeout=3)
+        response = requests.get(BASE_URL + "/health", timeout=15)
         return response.status_code == 200
     except Exception:
         return False
