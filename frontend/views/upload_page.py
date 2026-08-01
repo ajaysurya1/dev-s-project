@@ -13,7 +13,7 @@ def show():
 
     backend_ok = check_health()
     if not backend_ok:
-        st.error("Backend is not reachable. Make sure the server is running on " + BASE_URL)
+        st.error("Backend is not reachable.  " + BASE_URL)
         return
 
     allowed_types = ["pdf", "docx", "txt", "csv", "png", "jpg", "jpeg"]

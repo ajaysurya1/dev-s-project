@@ -4,12 +4,13 @@ BASE_URL = "https://dev-s-project.onrender.com"
 def upload_file(file_bytes, file_name):
     response = requests.post(
         BASE_URL + "/upload",
-        files={"file": (file_name, file_bytes)}
+        files={"file": (file_name, file_bytes)},
+        timeout=120
     )
     return response
 
 def get_documents():
-    response = requests.get(BASE_URL + "/documents")
+    response = requests.get(BASE_URL + "/documents", timeout=15)
     return response
 
 def delete_document(document_id):
@@ -24,7 +25,7 @@ def ask_question(question, document_ids=None):
     payload = {"question": question}
     if document_ids:
         payload["document_ids"] = document_ids
-    response = requests.post(BASE_URL + "/query", json=payload)
+    response = requests.post(BASE_URL + "/query", json=payload, timeout=60)
     return response
 
 def check_health():

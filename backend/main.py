@@ -59,16 +59,22 @@ async def upload_file(file: UploadFile = File(...)):
 
     file_size = os.path.getsize(file_path)
 
-    extracted_text = extract_text(file_path, file_extension)
+    try:
+        extracted_text = extract_text(file_path, file_extension)
 
-    if not extracted_text.strip():
-        raise HTTPException(status_code=400, detail="No text could be extracted from this file.")
+        if not extracted_text.strip():
+            raise HTTPException(status_code=400, detail="No text could be extracted from this file.")
 
-    chunks = split_text_into_chunks(extracted_text)
-    embeddings = generate_embeddings(chunks)
+        chunks = split_text_into_chunks(extracted_text)
+        embeddings = generate_embeddings(chunks)
 
-    document_id = save_document(file_name, file_extension, file_size, len(chunks), extracted_text)
-    add_chunks(document_id, chunks, embeddings)
+        document_id = save_document(file_name, file_extension, file_size, len(chunks), extracted_text)
+        add_chunks(document_id, chunks, embeddings)
+
+    except HTTPException:
+        raise
+    except Exception as error:
+        raise HTTPException(status_code=500, detail="Processing failed: " + str(error))
 
     return {
         "document_id": document_id,
@@ -76,6 +82,7 @@ async def upload_file(file: UploadFile = File(...)):
         "chunk_count": len(chunks),
         "message": "File uploaded and processed successfully."
     }
+
 
 
 @app.get("/documents")
