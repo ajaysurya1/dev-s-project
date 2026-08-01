@@ -30,7 +30,7 @@ def ask_question(question, document_ids=None):
 
 def check_health():
     try:
-        response = requests.get(BASE_URL + "/health", timeout=15)
+        response = requests.get(BASE_URL + "/health", timeout=3)
         return response.status_code == 200
     except Exception:
         return False
