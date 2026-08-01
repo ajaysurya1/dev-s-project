@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+python-multipart
+streamlit
+langchain-text-splitters
+chromadb
+pymupdf
+python-docx
+pandas
+pytesseract
+Pillow
+groq
+python-dotenv
+requests
