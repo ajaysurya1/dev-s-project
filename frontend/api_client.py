@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = "https://dev-s-project.onrender.com"
+BASE_URL = "https://dev-s-project-production.up.railway.app"
 def upload_file(file_bytes, file_name):
     response = requests.post(
         BASE_URL + "/upload",

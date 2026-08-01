@@ -18,7 +18,7 @@ I built this using Python, FastAPI for backend, and Streamlit for frontend.
 ## Live deployment
 
 - **Frontend**: https://docmind.streamlit.app
-- **Backend API**: https://dev-s-project.onrender.com
+- **Backend API**: https://dev-s-project-production.up.railway.app
 
 ## Tech stack
 
