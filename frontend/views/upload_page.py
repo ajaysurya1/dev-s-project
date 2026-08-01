@@ -36,7 +36,11 @@ def show():
 
         if st.button("Upload and Process"):
             with st.spinner("Uploading and extracting text..."):
-                response = upload_file(uploaded_file.getvalue(), uploaded_file.name)
+                try:
+                    response = upload_file(uploaded_file.getvalue(), uploaded_file.name)
+                except Exception as ex:
+                    st.error("Upload request timed out or failed: " + str(ex))
+                    return
 
             if response.status_code == 200:
                 data = response.json()
