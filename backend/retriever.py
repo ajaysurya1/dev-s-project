@@ -10,11 +10,12 @@ def retrieve_relevant_chunks(question, document_ids=None, top_k=5):
     distances = results["distances"][0]
 
     for text, metadata, distance in zip(documents, metadatas, distances):
+        similarity_score = 1 / (1 + distance)
         chunks.append({
             "text": text,
             "document_id": int(metadata["document_id"]),
             "chunk_index": metadata["chunk_index"],
-            "score": round(1 - distance, 4)
+            "score": round(similarity_score, 4)
         })
 
     return chunks
