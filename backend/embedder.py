@@ -2,6 +2,8 @@ from chromadb.utils.embedding_functions import DefaultEmbeddingFunction
 
 embedding_function = DefaultEmbeddingFunction()
 
+embedding_function(["warmup"])
+
 
 def generate_embeddings(text_list):
     embeddings = embedding_function(text_list)
